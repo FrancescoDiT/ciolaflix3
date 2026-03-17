@@ -5,6 +5,7 @@ import Background from "@/components/ui/background";
 import { Roboto } from "next/font/google";
 import { cn } from "@/lib/utils";
 import {UserProvider} from "@/context/UserContext";
+import Image from "next/image";
 
 const roboto = Roboto({subsets:['latin'],variable:'--font-sans'});
 
@@ -22,11 +23,25 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn("dark", "font-sans", roboto.variable)}>
       <body className="relative">
-            <div className={"absolute z-20"}>
+      <div className={"w-full min-h-screen absolute"}><
+          Image src={"/background.jpg"} alt={"background"} className={"z-0 absolute object-cover"}
+                priority
+                fill
+      />
+      </div>
+      <div className={"w-full min-h-screen absolute"}><
+          Image src={"/background-1.png"} alt={"background"} className={"z-20 absolute object-cover"}
+                priority
+                fill
+      />
+      </div>
+            <div className={"absolute z-10"}>
                 <Background/>
             </div>
           <UserProvider>
-              {children}
+              <div className={"relative z-30"}>
+                  {children}
+              </div>
           </UserProvider>
       </body>
     </html>
