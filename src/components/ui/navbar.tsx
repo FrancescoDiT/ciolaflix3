@@ -3,14 +3,16 @@ import React, { useState, useEffect } from 'react'
 import GlassSurface from '../GlassSurface'
 import { Button } from './button'
 import ThemeToggleButton from "@/components/ui/ThemeToggleButton";
+import {useUser} from "@/context/UserContext";
 
 const Navbar = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [isMounted, setIsMounted] = useState(false)
 
     useEffect(() => {
         setIsMounted(true)
     }, [])
+
+    const { user } = useUser()
 
     return (
         <div className="flex justify-center items-center h-40">
@@ -31,13 +33,13 @@ const Navbar = () => {
                 >
                     <div className="w-full h-full flex justify-end items-center gap-2 px-6">
                         <ThemeToggleButton/>
-                        {isLoggedIn ? (
+                        {!!user ? (
                             <>
-                                <Button variant="ghost" size="sm">profilo</Button>
-                                <Button variant="destructive" size="sm" onClick={() => setIsLoggedIn(false)}>esci</Button>
+                                <Button variant="ghost" size="sm">{user?.firstName}</Button>
+                                <Button variant="destructive" size="sm">esci</Button>
                             </>
                         ) : (
-                            <Button variant="ghost" size="sm" onClick={() => setIsLoggedIn(true)}>accedi</Button>
+                            <Button variant="ghost" size="sm">accedi</Button>
                         )}
                     </div>
                 </GlassSurface>
