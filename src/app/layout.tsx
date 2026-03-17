@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "@/components/ColorBends";
-import ColorBends from "../components/ColorBends";
-import Navbar from "@/components/ui/navbar";
 import Background from "@/components/ui/background";
 import { Roboto } from "next/font/google";
 import { cn } from "@/lib/utils";
@@ -24,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn("dark", "font-sans", roboto.variable)}>
       <body className="relative">
-          <Background/>
+            <div className={"absolute z-20"}>
+                <Background/>
+            </div>
           <UserProvider>
               {children}
           </UserProvider>

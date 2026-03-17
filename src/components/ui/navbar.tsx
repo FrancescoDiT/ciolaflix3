@@ -36,7 +36,7 @@ const Navbar = () => {
                         {!!user ? (
                             <>
                                 <Button variant="ghost" size="sm">{user?.firstName}</Button>
-                                <Button variant="destructive" size="sm">esci</Button>
+                                <Button variant="destructive" size="sm">Esci</Button>
                             </>
                         ) : (
                             <Button variant="ghost" size="sm">accedi</Button>
