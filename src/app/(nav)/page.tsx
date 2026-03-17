@@ -7,7 +7,7 @@ const Page = () => {
             <div className="justify-center items-center flex ">
                 <SplitText
                     text="Benvenuto su Ciolaflix"
-                    className="text-2xl font-semibold text-center"
+                    className="text-7xl font-semibold text-center"
                     delay={50}
                     duration={1.25}
                     ease="power3.out"
@@ -17,6 +17,7 @@ const Page = () => {
                     threshold={0.1}
                     rootMargin="-300px"
                     textAlign="center"
+                    tag="h1"
                 />
             </div>
         </main>
