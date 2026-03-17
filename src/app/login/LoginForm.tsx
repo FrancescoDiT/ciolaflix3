@@ -41,8 +41,6 @@ function LoginForm() {
     const onSubmit = async (data: FormData) => {
         setServerError(null);
 
-        console.log("ciuao")
-
         try {
             const response = await zodClient.login({
                 ...data,
@@ -63,8 +61,6 @@ function LoginForm() {
                 router.replace("/")
             }
 
-            console.log("Login completato");
-
         } catch (error) {
             if (isErrorFromAlias(zodClient.api, "login", error)) {
                 setServerError(error.response.data.message ?? "Errore durante il login");
@@ -82,9 +78,13 @@ function LoginForm() {
                 <GlassSurface
                     width="100%"
                     height="auto"
-                    backgroundOpacity={0.6}
-                    blur={1000}
+                    backgroundOpacity={0.1}
+                    saturation={1}
+                    borderWidth={0.2}
+                    blur={11}
                     borderRadius={28}
+                    brightness={50}
+
                 >
                     <div className="p-8 space-y-8">
                         {/* Header */}
@@ -142,21 +142,37 @@ function LoginForm() {
                                             <Mail className="text-muted-foreground" />
                                         </InputGroupAddon>
                                     </InputGroup>
+
+                                    <InputGroup>
+                                        <InputGroupInput
+                                            id={"password"}
+                                            placeholder="Password"
+                                            type={"text"}
+                                            {...register("password")}
+                                            aria-label={"Password"}
+                                            autoComplete={"Password"}
+                                            className={"w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all text-slate-900 dark:text-white placeholder:text-slate-500"}
+                                        />
+                                        <InputGroupAddon align="inline-start">
+                                            <Lock className="text-muted-foreground" />
+                                        </InputGroupAddon>
+                                    </InputGroup>
                                 </div>
-                                <div className="relative group">
-                                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none ">
-                                        <Lock className="h-5 w-5 text-slate-400 group-focus-within:text-purple-400 transition-colors" />
-                                    </div>
-                                    <input
-                                        id={"password"}
-                                        type="password"
-                                        placeholder="Password"
-                                        aria-label="Password"
-                                        autoComplete="current-password"
-                                        {...register("password")}
-                                        className="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all text-slate-900 dark:text-white placeholder:text-slate-500"
-                                    />
-                                </div>
+
+                            {/*    <div className="relative group">*/}
+                            {/*        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none ">*/}
+                            {/*            <Lock className="h-5 w-5 text-slate-400 group-focus-within:text-purple-400 transition-colors" />*/}
+                            {/*        </div>*/}
+                            {/*        <input*/}
+                            {/*            id={"password"}*/}
+                            {/*            type="password"*/}
+                            {/*            placeholder="Password"*/}
+                            {/*            aria-label="Password"*/}
+                            {/*            autoComplete="current-password"*/}
+                            {/*            {...register("password")}*/}
+                            {/*            className="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all text-slate-900 dark:text-white placeholder:text-slate-500"*/}
+                            {/*        />*/}
+                            {/*    </div>*/}
                             </div>
 
                             <Button type="submit" className="w-full" disabled={isSubmitting}>

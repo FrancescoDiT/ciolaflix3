@@ -4,11 +4,11 @@ import ColorBends from "@/components/ColorBends";
 const Background = () => {
     return (
         <div className="fixed inset-0 -z-10">
-            <ColorBends className="blur-md opacity-80"
+            <ColorBends className="blur-[15px] opacity-100"
                         colors={["#ff0000", "#000000", "#00ff00", "#000000", "#0000ff"]}
                         rotation={0}
-                        speed={0.2}
-                        scale={1}
+                        speed={0.5}
+                        scale={0.5}
                         frequency={1}
                         warpStrength={1}
                         mouseInfluence={1}

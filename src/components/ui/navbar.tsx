@@ -4,6 +4,7 @@ import GlassSurface from '../GlassSurface'
 import { Button } from './button'
 import ThemeToggleButton from "@/components/ui/ThemeToggleButton";
 import {useUser} from "@/context/UserContext";
+import Link from "next/link";
 
 const Navbar = () => {
     const [isMounted, setIsMounted] = useState(false)
@@ -39,7 +40,9 @@ const Navbar = () => {
                                 <Button variant="destructive" size="sm">Esci</Button>
                             </>
                         ) : (
-                            <Button variant="ghost" size="sm">accedi</Button>
+                            <Button variant="ghost" size="sm">
+                                <Link href={"/login"}>accedi</Link>
+                            </Button>
                         )}
                     </div>
                 </GlassSurface>

@@ -22,9 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn("dark", "font-sans", roboto.variable)}>
       <body className="relative">
-            <div className={"absolute z-20"}>
-                <Background/>
-            </div>
+        <Background/>
           <UserProvider>
               {children}
           </UserProvider>
