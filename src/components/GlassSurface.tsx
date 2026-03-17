@@ -1,4 +1,5 @@
 'use client'
+
 import React, { useEffect, useRef, useState, useId } from 'react';
 
 export interface GlassSurfaceProps {
@@ -87,6 +88,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
   const blueGradId = `blue-grad-${uniqueId}`;
 
   const [svgSupported, setSvgSupported] = useState<boolean>(false);
+  const [backdropSupported, setBackdropSupported] = useState<boolean>(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const feImageRef = useRef<SVGFEImageElement>(null);
@@ -164,6 +166,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
 
   useEffect(() => {
     setSvgSupported(supportsSVGFilters());
+    setBackdropSupported(supportsBackdropFilter());
   }, []);
 
   useEffect(() => {
@@ -227,11 +230,9 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
       width: typeof width === 'number' ? `${width}px` : width,
       height: typeof height === 'number' ? `${height}px` : height,
       borderRadius: `${borderRadius}px`,
-      '--glass-frost': backgroundOpacity,
-      '--glass-saturation': saturation
+      '--glass-frost': backgroundOpacity.toString(),
+      '--glass-saturation': saturation.toString()
     } as React.CSSProperties;
-
-    const backdropFilterSupported = supportsBackdropFilter();
 
     if (svgSupported) {
       return {
@@ -258,7 +259,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
       };
     } else {
       if (isDarkMode) {
-        if (!backdropFilterSupported) {
+        if (!backdropSupported) {
           return {
             ...baseStyles,
             background: 'rgba(0, 0, 0, 0.4)',
@@ -278,7 +279,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
           };
         }
       } else {
-        if (!backdropFilterSupported) {
+        if (!backdropSupported) {
           return {
             ...baseStyles,
             background: 'rgba(255, 255, 255, 0.4)',
