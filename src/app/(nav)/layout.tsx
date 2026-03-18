@@ -8,7 +8,9 @@ export default function RootLayout({
     return (
         <div>
             <Navbar/>
+            <div className={"pt-40"}>
             {children}
+            </div>
         </div>
     );
 }

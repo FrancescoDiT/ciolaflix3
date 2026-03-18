@@ -37,9 +37,9 @@ const ThemeToggleButton = () => {
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             >
                 {isDark ? (
-                    <Sun className="w-5 h-5 text-yellow-400" />
+                    <Sun className="w-7 h-7 text-yellow-400" />
                 ) : (
-                    <Moon className="w-5 h-5 text-purple-500" />
+                    <Moon className="w-7 h-7 text-purple-500" />
                 )}
             </motion.div>
         </motion.button>
